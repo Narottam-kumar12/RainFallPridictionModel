@@ -1,0 +1,14 @@
+2026-01-20 21:51:09,477 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 21:51:09,478 - data_ingestion - ERROR - Missing column in the dataframe: "['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'] not found in axis"
+2026-01-20 21:51:09,478 - data_ingestion - ERROR - Failed to complete the data ingestion process: "['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'] not found in axis"
+2026-01-20 21:57:50,433 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 21:57:50,433 - data_ingestion - ERROR - Missing column in the dataframe: "['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'] not found in axis"
+2026-01-20 21:57:50,433 - data_ingestion - ERROR - Failed to complete the data ingestion process: "['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'] not found in axis"
+2026-01-20 21:58:08,884 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 21:58:08,893 - data_ingestion - DEBUG - Data preprocessing completed
+2026-01-20 21:58:09,537 - data_ingestion - DEBUG - Train and test data saved to ./data/raw
+2026-01-20 21:58:09,538 - data_ingestion - DEBUG - Data ingestion completed successfully
+2026-01-20 21:58:18,780 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 21:58:18,789 - data_ingestion - DEBUG - Data preprocessing completed
+2026-01-20 21:58:19,431 - data_ingestion - DEBUG - Train and test data saved to ./data/raw
+2026-01-20 21:58:19,431 - data_ingestion - DEBUG - Data ingestion completed successfully

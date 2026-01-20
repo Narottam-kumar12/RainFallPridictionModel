@@ -1,0 +1,17 @@
+2026-01-20 22:15:24,497 - model_building - DEBUG - Feature data loaded from /home/demo3/RainFallPridictionModel/data/features/train_features.csv
+2026-01-20 22:15:24,501 - model_building - DEBUG - Features and target separated
+2026-01-20 22:15:34,123 - model_building - DEBUG - Random Forest training completed
+2026-01-20 22:15:34,275 - model_building - DEBUG - Evaluation results for Random Forest:
+2026-01-20 22:15:34,275 - model_building - DEBUG - Accuracy  : 1.0000
+2026-01-20 22:15:34,275 - model_building - DEBUG - Precision : 1.0000
+2026-01-20 22:15:34,275 - model_building - DEBUG - Recall    : 1.0000
+2026-01-20 22:15:34,275 - model_building - DEBUG - F1 Score  : 1.0000
+2026-01-20 22:15:35,198 - model_building - DEBUG - XGBoost training completed
+2026-01-20 22:15:35,231 - model_building - DEBUG - Evaluation results for XGBoost:
+2026-01-20 22:15:35,232 - model_building - DEBUG - Accuracy  : 1.0000
+2026-01-20 22:15:35,232 - model_building - DEBUG - Precision : 1.0000
+2026-01-20 22:15:35,232 - model_building - DEBUG - Recall    : 0.9998
+2026-01-20 22:15:35,232 - model_building - DEBUG - F1 Score  : 0.9999
+2026-01-20 22:15:35,301 - model_building - DEBUG - Model saved at ./models/rainfall_random_forest_model.pkl
+2026-01-20 22:15:35,302 - model_building - DEBUG - Random Forest selected as final model
+2026-01-20 22:15:35,302 - model_building - DEBUG - Model building pipeline completed successfully

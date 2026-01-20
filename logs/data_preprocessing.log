@@ -1,0 +1,10 @@
+2026-01-20 22:04:55,372 - data_preprocessing - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/raw/train.csv
+2026-01-20 22:04:55,444 - data_preprocessing - DEBUG - Missing values handled
+2026-01-20 22:04:55,501 - data_preprocessing - DEBUG - Categorical features encoded
+2026-01-20 22:04:56,001 - data_preprocessing - DEBUG - Processed data saved to ./data/processed
+2026-01-20 22:04:56,001 - data_preprocessing - DEBUG - Data preprocessing completed successfully
+2026-01-20 22:07:59,416 - data_preprocessing - DEBUG - Data loaded from ./data/raw/train.csv
+2026-01-20 22:07:59,505 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 22:07:59,565 - data_preprocessing - DEBUG - Categorical features encoded
+2026-01-20 22:08:00,059 - data_preprocessing - DEBUG - Processed data saved to ./data/processed
+2026-01-20 22:08:00,059 - data_preprocessing - DEBUG - Data preprocessing completed successfully
