@@ -2,115 +2,95 @@ import pandas as pd
 import os
 import logging
 from sklearn.preprocessing import LabelEncoder
+import pickle
+import yaml
 
-
-# Ensure logs directory exists
+# Logging
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
-
-# Logging configuration
 logger = logging.getLogger("data_preprocessing")
 logger.setLevel(logging.DEBUG)
-
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler(os.path.join(log_dir, "data_preprocessing.log"))
-
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
-
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+# Load params
+def load_params(stage_name: str):
+    params_file = os.path.join(os.getcwd(), "params.yaml")
+    with open(params_file, "r") as f:
+        all_params = yaml.safe_load(f)
+    return all_params.get(stage_name, {})
 
+# Functions
 def load_data(data_path: str) -> pd.DataFrame:
-    """Load training data."""
-    try:
-        df = pd.read_csv(data_path)
-        logger.debug("Data loaded from %s", data_path)
-        return df
-    except Exception as e:
-        logger.error("Error loading data: %s", e)
-        raise
-
+    df = pd.read_csv(data_path)
+    logger.debug("Data loaded from %s", data_path)
+    return df
 
 def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
-    """Handle missing values (Pandas 3.0 safe)."""
-    try:
-        numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns
-        categorical_cols = df.select_dtypes(include=["object"]).columns
+    numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns
+    categorical_cols = df.select_dtypes(include=["object"]).columns
 
-        # Fill numeric columns with median
-        df[numeric_cols] = df[numeric_cols].fillna(
-            df[numeric_cols].median()
-        )
+    df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
+    for col in categorical_cols:
+        df[col] = df[col].fillna(df[col].mode()[0])
 
-        # Fill categorical columns with mode
-        for col in categorical_cols:
-            df[col] = df[col].fillna(df[col].mode()[0])
+    logger.debug("Missing values handled successfully")
+    return df
 
-        logger.debug("Missing values handled successfully")
-        return df
+def encode_categorical_features_train(df: pd.DataFrame) -> (pd.DataFrame, dict):
+    categorical_cols = df.select_dtypes(include=["object"]).columns
+    encoders = {}
+    for col in categorical_cols:
+        le = LabelEncoder()
+        df[col] = le.fit_transform(df[col])
+        encoders[col] = le
 
-    except Exception as e:
-        logger.error("Error handling missing values: %s", e)
-        raise
+    os.makedirs("encoders", exist_ok=True)
+    with open("encoders/label_encoders.pkl", "wb") as f:
+        pickle.dump(encoders, f)
 
+    logger.debug("Categorical features encoded for train set")
+    return df, encoders
 
-def encode_categorical_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Encode categorical variables."""
-    try:
-        categorical_cols = df.select_dtypes(include=["object"]).columns
-        label_encoder = LabelEncoder()
+def encode_categorical_features_test(df: pd.DataFrame, encoders: dict) -> pd.DataFrame:
+    for col, le in encoders.items():
+        if col in df.columns:
+            df[col] = df[col].map(lambda x: le.transform([x])[0] if x in le.classes_ else -1)
+    logger.debug("Categorical features encoded for test set")
+    return df
 
-        for col in categorical_cols:
-            df[col] = label_encoder.fit_transform(df[col])
-
-        logger.debug("Categorical features encoded")
-        return df
-
-    except Exception as e:
-        logger.error("Error encoding categorical features: %s", e)
-        raise
-
-
-def save_processed_data(df: pd.DataFrame, data_path: str) -> None:
-    """Save processed dataset."""
-    try:
-        processed_path = os.path.join(data_path, "processed")
-        os.makedirs(processed_path, exist_ok=True)
-
-        df.to_csv(
-            os.path.join(processed_path, "train_processed.csv"),
-            index=False
-        )
-
-        logger.debug("Processed data saved to %s", processed_path)
-
-    except Exception as e:
-        logger.error("Error saving processed data: %s", e)
-        raise
-
+def save_processed_data(df: pd.DataFrame, data_path: str, file_name: str):
+    processed_path = os.path.join(data_path, "processed")
+    os.makedirs(processed_path, exist_ok=True)
+    df.to_csv(os.path.join(processed_path, file_name), index=False)
+    logger.debug("Processed data saved to %s", os.path.join(processed_path, file_name))
 
 def main():
     try:
-        train_data_path = "./data/raw/train.csv"
+        params = load_params("data_preprocessing")
+        train_path = "./data/raw/train.csv"
+        test_path = "./data/raw/test.csv"
+        save_dir = "./data"
 
-        df = load_data(train_data_path)
-        df = handle_missing_values(df)
-        df = encode_categorical_features(df)
+        train_df = load_data(train_path)
+        train_df = handle_missing_values(train_df)
+        train_df, encoders = encode_categorical_features_train(train_df)
+        save_processed_data(train_df, save_dir, "train_processed.csv")
 
-        save_processed_data(df, data_path="./data")
+        test_df = load_data(test_path)
+        test_df = handle_missing_values(test_df)
+        test_df = encode_categorical_features_test(test_df, encoders)
+        save_processed_data(test_df, save_dir, "test_processed.csv")
 
         logger.debug("Data preprocessing completed successfully")
-
     except Exception as e:
         logger.error("Data preprocessing failed: %s", e)
         print(f"Error: {e}")
-
 
 if __name__ == "__main__":
     main()

@@ -12,3 +12,15 @@
 2026-01-20 21:58:18,789 - data_ingestion - DEBUG - Data preprocessing completed
 2026-01-20 21:58:19,431 - data_ingestion - DEBUG - Train and test data saved to ./data/raw
 2026-01-20 21:58:19,431 - data_ingestion - DEBUG - Data ingestion completed successfully
+2026-01-20 23:22:57,222 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 23:22:57,230 - data_ingestion - DEBUG - Data preprocessing completed
+2026-01-20 23:22:57,886 - data_ingestion - DEBUG - Train and test data saved to ./data/raw
+2026-01-20 23:22:57,886 - data_ingestion - DEBUG - Data ingestion completed successfully
+2026-01-20 23:27:07,179 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 23:27:07,187 - data_ingestion - DEBUG - Data preprocessing completed
+2026-01-20 23:27:07,829 - data_ingestion - DEBUG - Train and test data saved to ./data/raw
+2026-01-20 23:27:07,830 - data_ingestion - DEBUG - Data ingestion completed successfully
+2026-01-20 23:27:36,892 - data_ingestion - DEBUG - Data loaded from https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+2026-01-20 23:27:36,900 - data_ingestion - DEBUG - Data preprocessing completed
+2026-01-20 23:27:37,531 - data_ingestion - DEBUG - Train and test data saved to ./data/raw
+2026-01-20 23:27:37,531 - data_ingestion - DEBUG - Data ingestion completed successfully

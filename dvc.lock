@@ -1,0 +1,121 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 445bf5fe9f05ce62a27494fa8f73bbe3
+      size: 2534
+    params:
+      params.yaml:
+        data_ingestion.data_url: 
+          https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv
+        data_ingestion.random_state: 2
+        data_ingestion.test_size: 0.2
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 00558ee420bc7279355fa7838ee4b1dc.dir
+      size: 14326167
+      nfiles: 2
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw/test.csv
+      hash: md5
+      md5: 5518e398bbfd8e30a57fb49d1a82d204
+      size: 2869855
+    - path: data/raw/train.csv
+      hash: md5
+      md5: 4f4541028887af7b6c013ee223395c18
+      size: 11456312
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 40d76bb4d88aecf5936e6248edf39735
+      size: 3493
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 36c0382bb5847524356568c6d12e2e3f.dir
+      size: 13682968
+      nfiles: 2
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+    - path: data/processed/test_processed.csv
+      hash: md5
+      md5: c3e28615a13bc2feb4242d1765c9bac0
+      size: 2735274
+    - path: data/processed/train_processed.csv
+      hash: md5
+      md5: e2f79d338384a37e98f8efe97875534f
+      size: 10947694
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 059cf2a01f30ff3b35cbbb1456b38017
+      size: 2983
+    params:
+      params.yaml:
+        feature_engineering.target_col: Rainfall
+    outs:
+    - path: data/features
+      hash: md5
+      md5: 7ef9c036793f467d566560ccc5e2279a.dir
+      size: 18494825
+      nfiles: 2
+  model_building:
+    cmd: python src/model_building.py
+    deps:
+    - path: data/features/train_features.csv
+      hash: md5
+      md5: 0c22589526fc8f319f38ab2539ba3f51
+      size: 14798208
+    - path: src/model_building.py
+      hash: md5
+      md5: ecffb62ae5026e9094514f93fab29ee6
+      size: 4863
+    params:
+      params.yaml:
+        model_building.rf_max_depth: 10
+        model_building.rf_n_estimators: 200
+        model_building.rf_random_state: 42
+        model_building.xgb_colsample_bytree: 0.8
+        model_building.xgb_learning_rate: 0.05
+        model_building.xgb_max_depth: 6
+        model_building.xgb_n_estimators: 300
+        model_building.xgb_random_state: 42
+        model_building.xgb_subsample: 0.8
+    outs:
+    - path: models
+      hash: md5
+      md5: f6d455b1b912ea13435c69f39f0ca467.dir
+      size: 5796822
+      nfiles: 2
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: data/features/test_features.csv
+      hash: md5
+      md5: 61711a9bd303b93ffa0d9ecd30beb78a
+      size: 3696617
+    - path: models/rainfall_random_forest_model.pkl
+      hash: md5
+      md5: 7eaa0889e78e367949e8fa3ea7d515ec
+      size: 5397065
+    - path: models/rainfall_xgboost_model.pkl
+      hash: md5
+      md5: 0ef133711a983e425cd13c5ab37b92dc
+      size: 399757
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: fdfef47fd612b45293eeb8d454ee9cd0
+      size: 2353
+    params:
+      params.yaml:
+        model_evaluation.model_choice: rainfall_random_forest_model.pkl
+    outs:
+    - path: reports/evaluation_metrics.csv
+      hash: md5
+      md5: 7bfe12c5377bd89faa81809a13eae57d
+      size: 51

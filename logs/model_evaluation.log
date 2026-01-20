@@ -1,2 +1,35 @@
 2026-01-20 22:23:02,064 - model_evaluation - ERROR - Failed to load test feature data: [Errno 2] No such file or directory: './data/features/test_features.csv'
 2026-01-20 22:23:02,064 - model_evaluation - ERROR - Model evaluation failed: [Errno 2] No such file or directory: './data/features/test_features.csv'
+2026-01-20 23:04:51,988 - model_evaluation - DEBUG - Test feature data loaded from /home/demo3/RainFallPridictionModel/data/features/test_features.csv
+2026-01-20 23:04:51,988 - model_evaluation - ERROR - Model evaluation failed: "['RainTomorrow'] not found in axis"
+2026-01-20 23:05:39,765 - model_evaluation - DEBUG - Test feature data loaded from /home/demo3/RainFallPridictionModel/data/features/test_features.csv
+2026-01-20 23:05:39,766 - model_evaluation - ERROR - Model evaluation failed: "['RainTomorrow'] not found in axis"
+2026-01-20 23:05:52,035 - model_evaluation - DEBUG - Test feature data loaded from /home/demo3/RainFallPridictionModel/data/features/test_features.csv
+2026-01-20 23:05:52,036 - model_evaluation - DEBUG - Features and target separated for evaluation
+2026-01-20 23:05:52,102 - model_evaluation - DEBUG - Model loaded from ./models/rainfall_random_forest_model.pkl
+2026-01-20 23:05:52,282 - model_evaluation - DEBUG - Model Evaluation Results:
+2026-01-20 23:05:52,282 - model_evaluation - DEBUG - Accuracy  : 1.0000
+2026-01-20 23:05:52,282 - model_evaluation - DEBUG - Precision : 1.0000
+2026-01-20 23:05:52,282 - model_evaluation - DEBUG - Recall    : 1.0000
+2026-01-20 23:05:52,282 - model_evaluation - DEBUG - F1 Score  : 1.0000
+2026-01-20 23:05:52,300 - model_evaluation - DEBUG - Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     22022
+           1       1.00      1.00      1.00      6417
+
+    accuracy                           1.00     28439
+   macro avg       1.00      1.00      1.00     28439
+weighted avg       1.00      1.00      1.00     28439
+
+2026-01-20 23:05:52,304 - model_evaluation - DEBUG - Confusion Matrix:
+[[22022     0]
+ [    0  6417]]
+2026-01-20 23:05:52,305 - model_evaluation - DEBUG - Evaluation metrics saved at ./reports
+2026-01-20 23:05:52,305 - model_evaluation - DEBUG - Model evaluation pipeline completed successfully
+2026-01-20 23:26:38,972 - model_evaluation - DEBUG - Evaluation metrics saved at ./reports
+2026-01-20 23:26:38,972 - model_evaluation - DEBUG - Model evaluation completed successfully
+2026-01-20 23:34:39,794 - model_evaluation - DEBUG - Evaluation metrics saved at ./reports
+2026-01-20 23:34:39,794 - model_evaluation - DEBUG - Model evaluation completed successfully
+2026-01-20 23:37:55,134 - model_evaluation - DEBUG - Evaluation metrics saved at ./reports
+2026-01-20 23:37:55,134 - model_evaluation - DEBUG - Model evaluation completed successfully

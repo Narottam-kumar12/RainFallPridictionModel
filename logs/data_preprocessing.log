@@ -8,3 +8,48 @@
 2026-01-20 22:07:59,565 - data_preprocessing - DEBUG - Categorical features encoded
 2026-01-20 22:08:00,059 - data_preprocessing - DEBUG - Processed data saved to ./data/processed
 2026-01-20 22:08:00,059 - data_preprocessing - DEBUG - Data preprocessing completed successfully
+2026-01-20 22:57:27,204 - data_preprocessing - DEBUG - Data loaded from ./data/raw/train.csv
+2026-01-20 22:57:27,307 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 22:57:27,373 - data_preprocessing - DEBUG - Categorical features encoded for train set
+2026-01-20 22:57:28,040 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/train_processed.csv
+2026-01-20 22:57:28,076 - data_preprocessing - DEBUG - Data loaded from ./data/raw/test.csv
+2026-01-20 22:57:28,101 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 22:57:38,781 - data_preprocessing - DEBUG - Categorical features encoded for test set
+2026-01-20 22:57:39,011 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/test_processed.csv
+2026-01-20 22:57:39,012 - data_preprocessing - DEBUG - Data preprocessing completed successfully for both train and test datasets
+2026-01-20 23:02:21,159 - data_preprocessing - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/raw/train.csv
+2026-01-20 23:02:21,246 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:02:21,306 - data_preprocessing - DEBUG - Categorical features encoded for train set
+2026-01-20 23:02:21,789 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/train_processed.csv
+2026-01-20 23:02:21,823 - data_preprocessing - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/raw/test.csv
+2026-01-20 23:02:21,848 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:02:30,476 - data_preprocessing - DEBUG - Categorical features encoded for test set
+2026-01-20 23:02:30,603 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/test_processed.csv
+2026-01-20 23:02:30,603 - data_preprocessing - DEBUG - Data preprocessing completed successfully for both train and test datasets
+2026-01-20 23:23:27,318 - data_preprocessing - DEBUG - Data loaded from ./data/raw/train.csv
+2026-01-20 23:23:27,405 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:23:27,469 - data_preprocessing - DEBUG - Categorical features encoded for train set
+2026-01-20 23:23:27,963 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/train_processed.csv
+2026-01-20 23:23:27,996 - data_preprocessing - DEBUG - Data loaded from ./data/raw/test.csv
+2026-01-20 23:23:28,019 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:23:36,537 - data_preprocessing - DEBUG - Categorical features encoded for test set
+2026-01-20 23:23:36,662 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/test_processed.csv
+2026-01-20 23:23:36,662 - data_preprocessing - DEBUG - Data preprocessing completed successfully
+2026-01-20 23:30:58,730 - data_preprocessing - DEBUG - Data loaded from ./data/raw/train.csv
+2026-01-20 23:30:58,819 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:30:58,881 - data_preprocessing - DEBUG - Categorical features encoded for train set
+2026-01-20 23:30:59,374 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/train_processed.csv
+2026-01-20 23:30:59,405 - data_preprocessing - DEBUG - Data loaded from ./data/raw/test.csv
+2026-01-20 23:30:59,429 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:31:08,082 - data_preprocessing - DEBUG - Categorical features encoded for test set
+2026-01-20 23:31:08,208 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/test_processed.csv
+2026-01-20 23:31:08,208 - data_preprocessing - DEBUG - Data preprocessing completed successfully
+2026-01-20 23:31:34,251 - data_preprocessing - DEBUG - Data loaded from ./data/raw/train.csv
+2026-01-20 23:31:34,341 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:31:34,404 - data_preprocessing - DEBUG - Categorical features encoded for train set
+2026-01-20 23:31:34,889 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/train_processed.csv
+2026-01-20 23:31:34,921 - data_preprocessing - DEBUG - Data loaded from ./data/raw/test.csv
+2026-01-20 23:31:34,945 - data_preprocessing - DEBUG - Missing values handled successfully
+2026-01-20 23:31:43,506 - data_preprocessing - DEBUG - Categorical features encoded for test set
+2026-01-20 23:31:43,632 - data_preprocessing - DEBUG - Processed data saved to ./data/processed/test_processed.csv
+2026-01-20 23:31:43,632 - data_preprocessing - DEBUG - Data preprocessing completed successfully
