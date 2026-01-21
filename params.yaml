@@ -1,26 +1,40 @@
 data_ingestion:
+  data_url: "https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv"
   test_size: 0.2
   random_state: 2
-  data_url: "https://raw.githubusercontent.com/Narottam-kumar12/Datasets/refs/heads/main/weatherAUS.csv"
 
 data_preprocessing:
-  # Currently no parameters, but you can add missing value strategies if needed
-  numeric_fill: "median"
-  categorical_fill: "mode"
+  numeric_strategy: median
+  categorical_strategy: mode
 
 feature_engineering:
-  target_col: "Rainfall"
+  drop_columns:
+    - Rainfall
+  create_features:
+    temp_range: true
+    avg_humidity: true
+    pressure_diff: true
+    avg_wind_speed: true
 
 model_building:
-  rf_n_estimators: 200
-  rf_max_depth: 10
-  rf_random_state: 42
-  xgb_n_estimators: 300
-  xgb_max_depth: 6
-  xgb_learning_rate: 0.05
-  xgb_subsample: 0.8
-  xgb_colsample_bytree: 0.8
-  xgb_random_state: 42
+  target_column: target
+  test_size: 0.2
+  random_state: 42
+
+  random_forest:
+    n_estimators: 200
+    max_depth: 10
+    class_weight: balanced
+    random_state: 42
+
+  xgboost:
+    n_estimators: 300
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    eval_metric: logloss
+    random_state: 42
 
 model_evaluation:
-  model_choice: "rainfall_random_forest_model.pkl" # can also be rainfall_xgboost_model.pkl
+  metrics_output_dir: reports

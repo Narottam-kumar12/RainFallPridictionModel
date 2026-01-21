@@ -1,26 +1,34 @@
+import pandas as pd
 import os
 import logging
-import pandas as pd
 import joblib
+
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from xgboost import XGBClassifier
-import yaml
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score
+)
 
-# =========================
-# Logging Configuration
-# =========================
+from xgboost import XGBClassifier
+
+
+# Ensure logs directory exists
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 
+# Logging configuration
 logger = logging.getLogger("model_building")
 logger.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler(os.path.join(log_dir, "model_building.log"))
 
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
 console_handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
@@ -29,70 +37,34 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
-# =========================
-# Load Parameters
-# =========================
-def load_params(stage_name: str):
-    params_file = os.path.join(os.getcwd(), "params.yaml")
-    with open(params_file, "r") as f:
-        all_params = yaml.safe_load(f)
-    return all_params.get(stage_name, {})
-
-
-# =========================
-# Load Feature Data
-# =========================
 def load_feature_data(data_path: str) -> pd.DataFrame:
-    df = pd.read_csv(data_path)
-    logger.debug("Feature data loaded from %s", data_path)
-    return df
+    """Load feature engineered dataset."""
+    try:
+        df = pd.read_csv(data_path)
+        logger.debug("Feature data loaded from %s", data_path)
+        return df
+    except Exception as e:
+        logger.error("Error loading feature data: %s", e)
+        raise
 
 
-# =========================
-# Split features and target
-# =========================
 def split_features_target(df: pd.DataFrame):
-    X = df.drop(columns=["target"])
-    y = df["target"]
-    logger.debug("Features and target separated")
-    return X, y
+    """Split dataset into X and y."""
+    try:
+        X = df.drop(columns=["target"])
+        y = df["target"]
+
+        logger.debug("Features and target separated")
+        return X, y
+    except KeyError as e:
+        logger.error("Target column missing: %s", e)
+        raise
 
 
-# =========================
-# Model training functions
-# =========================
-def train_random_forest(X_train, y_train, params):
-    model = RandomForestClassifier(
-        n_estimators=params.get("rf_n_estimators", 200),
-        max_depth=params.get("rf_max_depth", 10),
-        random_state=params.get("rf_random_state", 42),
-        class_weight="balanced"
-    )
-    model.fit(X_train, y_train)
-    logger.debug("Random Forest training completed")
-    return model
-
-
-def train_xgboost(X_train, y_train, params):
-    model = XGBClassifier(
-        n_estimators=params.get("xgb_n_estimators", 300),
-        max_depth=params.get("xgb_max_depth", 6),
-        learning_rate=params.get("xgb_learning_rate", 0.05),
-        subsample=params.get("xgb_subsample", 0.8),
-        colsample_bytree=params.get("xgb_colsample_bytree", 0.8),
-        eval_metric="logloss",
-        random_state=params.get("xgb_random_state", 42)
-    )
-    model.fit(X_train, y_train)
-    logger.debug("XGBoost training completed")
-    return model
-
-
-# =========================
-# Evaluate model
-# =========================
 def evaluate_model(model, X_test, y_test, model_name: str):
+    """Evaluate trained model."""
     y_pred = model.predict(X_test)
+
     acc = accuracy_score(y_test, y_pred)
     prec = precision_score(y_test, y_pred)
     rec = recall_score(y_test, y_pred)
@@ -107,47 +79,82 @@ def evaluate_model(model, X_test, y_test, model_name: str):
     return f1
 
 
-# =========================
-# Save model
-# =========================
+def train_random_forest(X_train, y_train):
+    """Train Random Forest model."""
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=10,
+        random_state=42,
+        class_weight="balanced"
+    )
+    model.fit(X_train, y_train)
+    logger.debug("Random Forest training completed")
+    return model
+
+
+def train_xgboost(X_train, y_train):
+    """Train XGBoost model."""
+    model = XGBClassifier(
+        n_estimators=300,
+        max_depth=6,
+        learning_rate=0.05,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        eval_metric="logloss",
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    logger.debug("XGBoost training completed")
+    return model
+
+
 def save_model(model, model_name: str):
-    os.makedirs("models", exist_ok=True)
-    model_path = os.path.join("models", model_name)
-    joblib.dump(model, model_path)
-    logger.debug("Model saved at %s", model_path)
-    return model_path
+    """Save trained model."""
+    try:
+        model_dir = "./models"
+        os.makedirs(model_dir, exist_ok=True)
+
+        model_path = os.path.join(model_dir, model_name)
+        joblib.dump(model, model_path)
+
+        logger.debug("Model saved at %s", model_path)
+    except Exception as e:
+        logger.error("Error saving model: %s", e)
+        raise
 
 
-# =========================
-# Main pipeline
-# =========================
 def main():
     try:
-        params = load_params("model_building")
+        feature_data_path = "/home/demo3/RainFallPridictionModel/data/features/train_features.csv"
 
-        feature_data_path = "./data/features/train_features.csv"
         df = load_feature_data(feature_data_path)
         X, y = split_features_target(df)
 
         X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=0.2, random_state=42, stratify=y
+            X,
+            y,
+            test_size=0.2,
+            random_state=42,
+            stratify=y
         )
 
-        # Train both models
-        rf_model = train_random_forest(X_train, y_train, params)
-        xgb_model = train_xgboost(X_train, y_train, params)
-
-        # Evaluate both models
+        # ---------------- Random Forest ----------------
+        rf_model = train_random_forest(X_train, y_train)
         rf_f1 = evaluate_model(rf_model, X_test, y_test, "Random Forest")
+
+        # ---------------- XGBoost ----------------
+        xgb_model = train_xgboost(X_train, y_train)
         xgb_f1 = evaluate_model(xgb_model, X_test, y_test, "XGBoost")
 
-        # Save both models
-        save_model(rf_model, "rainfall_random_forest_model.pkl")
-        save_model(xgb_model, "rainfall_xgboost_model.pkl")
+        # ---------------- Model Selection ----------------
+        if xgb_f1 >= rf_f1:
+            save_model(xgb_model, "rainfall_xgboost_model.pkl")
+            logger.debug("XGBoost selected as final model")
+        else:
+            save_model(rf_model, "rainfall_random_forest_model.pkl")
+            logger.debug("Random Forest selected as final model")
 
-        # Select best model for production (can be used in evaluation)
-        best_model_name = "rainfall_xgboost_model.pkl" if xgb_f1 >= rf_f1 else "rainfall_random_forest_model.pkl"
-        logger.debug("Selected best model: %s", best_model_name)
+        logger.debug("Model building pipeline completed successfully")
 
     except Exception as e:
         logger.error("Model building failed: %s", e)

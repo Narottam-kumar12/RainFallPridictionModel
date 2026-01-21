@@ -1,40 +1,14 @@
-2026-01-20 22:10:48,377 - feature_engineering - DEBUG - Processed data loaded from /home/demo3/RainFallPridictionModel/data/processed/train_processed.csv
-2026-01-20 22:10:48,379 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 22:10:48,384 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
-2026-01-20 22:10:49,004 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features
-2026-01-20 22:10:49,004 - feature_engineering - DEBUG - Feature engineering completed successfully
-2026-01-20 22:59:01,799 - feature_engineering - DEBUG - Processed data loaded from /home/demo3/RainFallPridictionModel/data/processed/train_processed.csv
-2026-01-20 22:59:01,801 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 22:59:01,806 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
-2026-01-20 22:59:02,620 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features
-2026-01-20 22:59:02,620 - feature_engineering - DEBUG - Feature engineering completed successfully
-2026-01-20 23:02:58,131 - feature_engineering - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/processed/train_processed.csv
-2026-01-20 23:02:58,134 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:02:58,137 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
-2026-01-20 23:02:58,780 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/train_features.csv
-2026-01-20 23:02:58,810 - feature_engineering - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/processed/test_processed.csv
-2026-01-20 23:02:58,811 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:02:58,812 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
-2026-01-20 23:02:58,968 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/test_features.csv
-2026-01-20 23:02:58,968 - feature_engineering - DEBUG - Feature engineering completed successfully for both train and test datasets
-2026-01-20 23:24:27,076 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:24:27,082 - feature_engineering - DEBUG - Unused features dropped
-2026-01-20 23:24:27,713 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/train_features.csv
-2026-01-20 23:24:27,741 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:24:27,742 - feature_engineering - DEBUG - Unused features dropped
-2026-01-20 23:24:27,900 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/test_features.csv
-2026-01-20 23:24:27,900 - feature_engineering - DEBUG - Feature engineering completed successfully
-2026-01-20 23:31:44,068 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:31:44,072 - feature_engineering - DEBUG - Unused features dropped
-2026-01-20 23:31:44,706 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/train_features.csv
-2026-01-20 23:31:44,734 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:31:44,735 - feature_engineering - DEBUG - Unused features dropped
-2026-01-20 23:31:44,888 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/test_features.csv
-2026-01-20 23:31:44,888 - feature_engineering - DEBUG - Feature engineering completed successfully
-2026-01-20 23:32:15,959 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:32:15,964 - feature_engineering - DEBUG - Unused features dropped
-2026-01-20 23:32:16,593 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/train_features.csv
-2026-01-20 23:32:16,620 - feature_engineering - DEBUG - Rainfall related features created
-2026-01-20 23:32:16,621 - feature_engineering - DEBUG - Unused features dropped
-2026-01-20 23:32:16,775 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/test_features.csv
-2026-01-20 23:32:16,775 - feature_engineering - DEBUG - Feature engineering completed successfully
+2026-01-21 08:45:55,299 - feature_engineering - DEBUG - Processed data loaded from /home/demo3/RainFallPridictionModel/data/processed/train_processed.csv
+2026-01-21 08:45:55,302 - feature_engineering - DEBUG - Rainfall related features created
+2026-01-21 08:45:55,306 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
+2026-01-21 08:45:55,942 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features
+2026-01-21 08:45:55,942 - feature_engineering - DEBUG - Feature engineering completed successfully
+2026-01-21 08:54:48,255 - feature_engineering - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/processed/train_processed.csv
+2026-01-21 08:54:48,257 - feature_engineering - DEBUG - Rainfall related features created
+2026-01-21 08:54:48,262 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
+2026-01-21 08:54:48,889 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/train_features.csv
+2026-01-21 08:54:48,915 - feature_engineering - DEBUG - Data loaded from /home/demo3/RainFallPridictionModel/data/processed/test_processed.csv
+2026-01-21 08:54:48,916 - feature_engineering - DEBUG - Rainfall related features created
+2026-01-21 08:54:48,917 - feature_engineering - DEBUG - Unused features dropped: ['Rainfall']
+2026-01-21 08:54:49,069 - feature_engineering - DEBUG - Feature engineered data saved to ./data/features/test_features.csv
+2026-01-21 08:54:49,070 - feature_engineering - DEBUG - Feature engineering completed successfully for both train and test datasets
